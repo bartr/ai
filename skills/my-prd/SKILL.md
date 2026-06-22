@@ -1,5 +1,5 @@
 ---
-name: prd-builder
+name: my-prd
 description: 'Generate a Product Requirements Document (PRD) from a brief idea or a stream-of-consciousness notes file through a short interactive interview. Use when the user wants to create a PRD, turn a feature idea or notes into a spec, draft product requirements, or resume an in-progress PRD. Asks clarifying questions, fills gaps with stated assumptions, and saves a Markdown PRD plus a resumable state file.'
 argument-hint: '[feature name or path to a notes/idea .md file]'
 ---

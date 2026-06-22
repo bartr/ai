@@ -8,7 +8,7 @@ A small collection of reusable **agent skills** for GitHub Copilot (VS Code + CL
 
 | Skill | Description |
 |-------|-------------|
-| [`prd-builder`](skills/prd-builder/) | Generates a Product Requirements Document (PRD) from a brief idea or a notes file through a short interactive interview. Saves a Markdown PRD plus a resumable state file. |
+| [`my-prd`](skills/my-prd/) | Generates a Product Requirements Document (PRD) from a brief idea or a notes file through a short interactive interview. Saves a Markdown PRD plus a resumable state file. |
 
 ## How It Works
 
@@ -54,14 +54,14 @@ Once installed, invoke a skill from your agent. For example, with the PRD Builde
 
 or point it at a notes file:
 
-> Use the prd-builder skill with my notes in `webv.md`.
+> Use the my-prd skill with my notes in `webv.md`.
 
 The PRD Builder asks a few clarifying questions, writes the PRD to `docs/prd-[feature-name].md`, and saves a resumable session state file under `.prd-sessions/`.
 
 ## Adding a New Skill
 
 1. Create a new folder under `skills/`, e.g. `skills/my-skill/`.
-2. Add a `SKILL.md` with YAML front matter (`name`, `description`, optional `argument-hint`) describing when and how the skill should be used. See [`skills/prd-builder/SKILL.md`](skills/prd-builder/SKILL.md) as a template.
+2. Add a `SKILL.md` with YAML front matter (`name`, `description`, optional `argument-hint`) describing when and how the skill should be used. See [`skills/my-prd/SKILL.md`](skills/my-prd/SKILL.md) as a template.
 3. Add any supporting files the skill references (templates, question banks, schemas).
 4. Run `./install.sh` to copy the new skill into your skill folders.
 
@@ -70,7 +70,7 @@ The PRD Builder asks a few clarifying questions, writes the PRD to `docs/prd-[fe
 ```
 install.sh                  # copy installer (install / --uninstall)
 skills/
-  prd-builder/
+  my-prd/
     SKILL.md                # skill definition and procedure
     questions.md            # interview question bank
     prd-template.md         # output PRD template

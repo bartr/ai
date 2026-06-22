@@ -15,7 +15,7 @@ skills/
 ```
 
 - Every skill is a self-contained directory under `skills/`.
-- Skill directory names are **kebab-case** (e.g. `prd-builder`) and match the `name` in the skill's front matter.
+- Skill directory names are **kebab-case** (e.g. `my-prd`) and match the `name` in the skill's front matter.
 - A skill references its supporting files by **relative path** (e.g. `./prd-template.md`) so it works regardless of where the directory is copied.
 
 ## Authoring a SKILL.md
