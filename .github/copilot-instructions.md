@@ -16,7 +16,7 @@ skills/
 
 - Every skill is a self-contained directory under `skills/`.
 - Skill directory names are **kebab-case** (e.g. `prd-builder`) and match the `name` in the skill's front matter.
-- A skill references its supporting files by **relative path** (e.g. `./prd-template.md`) so it works regardless of where the directory is symlinked.
+- A skill references its supporting files by **relative path** (e.g. `./prd-template.md`) so it works regardless of where the directory is copied.
 
 ## Authoring a SKILL.md
 
@@ -42,14 +42,14 @@ Conventions:
 ## Supporting files
 
 - Put templates, schemas, and question banks in the skill's own directory and link to them with relative paths from `SKILL.md`.
-- Do not reference files outside the skill directory — a skill must remain portable when symlinked.
+- Do not reference files outside the skill directory — a skill must remain portable when copied.
 
 ## Installer conventions (`install.sh`)
 
-- The installer symlinks each `skills/*/` directory into `~/.copilot/skills` and `~/.claude/skills`.
-- It must stay POSIX-bash compatible and target WSL, Linux, and macOS only (Unix symlinks, `$HOME` paths) — do **not** add native-Windows/PowerShell logic.
-- It must be idempotent: re-running links cleanly, never clobbers existing **real** (non-symlink) files, and `--unlink` removes only the symlinks it created.
-- Keep `set -euo pipefail` and the link/`--unlink` modes intact.
+- The installer copies each `skills/*/` directory into `~/.copilot/skills` and `~/.claude/skills`.
+- It must stay POSIX-bash compatible and target WSL, Linux, and macOS only (`$HOME` paths) — do **not** add native-Windows/PowerShell logic.
+- It must be idempotent: re-running replaces the copied skill directories cleanly, never clobbers a same-named path that is not a directory, and `--uninstall` removes only the skill copies it created.
+- Keep `set -euo pipefail` and the install/`--uninstall` modes intact.
 
 ## Documentation
 

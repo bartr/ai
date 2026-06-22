@@ -1,8 +1,8 @@
 # AI Skills
 
-A small collection of reusable **agent skills** for GitHub Copilot (VS Code + CLI) and Claude Code. Each skill lives under [`skills/`](skills/) and is symlinked into your personal skill folders by [`install.sh`](install.sh).
+A small collection of reusable **agent skills** for GitHub Copilot (VS Code + CLI) and Claude Code. Each skill lives under [`skills/`](skills/) and is copied into your personal skill folders by [`install.sh`](install.sh).
 
-> **Platform:** the installer uses Unix symlinks and `$HOME` paths, so it expects **WSL, Linux, or macOS**. It is not supported on native Windows (PowerShell/CMD).
+> **Platform:** the installer uses `$HOME` paths and standard Unix tooling, so it expects **WSL, Linux, or macOS**. It is not supported on native Windows (PowerShell/CMD).
 
 ## What's Included
 
@@ -12,12 +12,12 @@ A small collection of reusable **agent skills** for GitHub Copilot (VS Code + CL
 
 ## How It Works
 
-`install.sh` symlinks every directory in `skills/` into both of these personal skill folders so the skills are picked up automatically:
+`install.sh` copies every directory in `skills/` into both of these personal skill folders so the skills are picked up automatically:
 
 - `~/.copilot/skills` — GitHub Copilot (VS Code and the Copilot CLI)
 - `~/.claude/skills` — Claude Code
 
-Because they are symlinks, edits you make in this repo are reflected immediately — no need to re-run the installer after changing a skill's contents.
+Because the skills are copied, edits you make in this repo are **not** reflected automatically — re-run `./install.sh` after changing a skill's contents.
 
 ## Getting Started
 
@@ -34,16 +34,16 @@ From the repo root:
 ./install.sh
 ```
 
-This creates `~/.copilot/skills` and `~/.claude/skills` if needed and links each skill into them. Existing real (non-symlink) files with the same name are skipped to avoid clobbering your own files.
+This creates `~/.copilot/skills` and `~/.claude/skills` if needed and copies each skill into them. Existing entries with the same name are replaced; a same-named path that is not a directory is skipped to avoid clobbering your own files.
 
 Then **reload VS Code** and **restart Claude Code / the Copilot CLI** to pick up the new skills.
 
 ### Uninstall
 
-To remove only the symlinks this script created:
+To remove the skill copies this script created:
 
 ```bash
-./install.sh --unlink
+./install.sh --uninstall
 ```
 
 ## Using a Skill
@@ -63,12 +63,12 @@ The PRD Builder asks a few clarifying questions, writes the PRD to `docs/prd-[fe
 1. Create a new folder under `skills/`, e.g. `skills/my-skill/`.
 2. Add a `SKILL.md` with YAML front matter (`name`, `description`, optional `argument-hint`) describing when and how the skill should be used. See [`skills/prd-builder/SKILL.md`](skills/prd-builder/SKILL.md) as a template.
 3. Add any supporting files the skill references (templates, question banks, schemas).
-4. Run `./install.sh` to link the new skill into your skill folders.
+4. Run `./install.sh` to copy the new skill into your skill folders.
 
 ## Repository Structure
 
 ```
-install.sh                  # symlink installer (link / --unlink)
+install.sh                  # copy installer (install / --uninstall)
 skills/
   prd-builder/
     SKILL.md                # skill definition and procedure
